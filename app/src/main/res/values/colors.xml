@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- dark palette -->
+    <color name="deep_navy">#030637</color>
+    <color name="dark_plum">#3C0753</color>
+    <color name="royal_magenta">#720455</color>
+    <color name="vivid_magenta">#910A67</color>
+    <!-- light palette -->
+    <color name="cream_white">#FFFBF5</color>
+    <color name="soft_cream">#F7EFE5</color>
+    <color name="lavender">#C3ACD0</color>
 </resources>

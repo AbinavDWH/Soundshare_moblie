@@ -1,9 +1,14 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
     <style name="Base.Theme.SoundShare" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/royal_magenta</item>
+        <item name="colorOnPrimary">@color/cream_white</item>
+        <item name="colorSecondary">@color/vivid_magenta</item>
+        <item name="colorSecondaryContainer">@color/lavender</item>
+        <item name="colorOnSecondaryContainer">@color/dark_plum</item>
+        <item name="colorSurface">@color/cream_white</item>
+        <item name="colorOnSurface">@color/dark_plum</item>
+        <item name="android:statusBarColor">@color/royal_magenta</item>
     </style>
-
     <style name="Theme.SoundShare" parent="Base.Theme.SoundShare" />
 </resources>

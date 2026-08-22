@@ -1,7 +1,14 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
     <style name="Base.Theme.SoundShare" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/vivid_magenta</item>
+        <item name="colorOnPrimary">@color/cream_white</item>
+        <item name="colorSecondary">@color/lavender</item>
+        <item name="colorSecondaryContainer">@color/dark_plum</item>
+        <item name="colorOnSecondaryContainer">@color/soft_cream</item>
+        <item name="colorSurface">@color/deep_navy</item>
+        <item name="colorOnSurface">@color/soft_cream</item>
+        <item name="android:statusBarColor">@color/deep_navy</item>
     </style>
+    <style name="Theme.SoundShare" parent="Base.Theme.SoundShare" />
 </resources>

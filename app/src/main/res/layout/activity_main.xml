@@ -1,19 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal"
+    android:background="?attr/colorSurface">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="SoundShare 🎧"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="?attr/colorPrimary"
+        android:layout_marginBottom="32dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- ===== SENDER ===== -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Share your vibe (Sender)"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="?attr/colorOnSurface" />
+
+    <TextView
+        android:id="@+id/tvLocalIp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your IP: loading..."
+        android:textSize="16sp"
+        android:textColor="?attr/colorOnSecondaryContainer"
+        android:padding="12dp"
+        android:background="?attr/colorSecondaryContainer"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Port: 50000"
+        android:textSize="16sp"
+        android:textColor="?attr/colorOnSecondaryContainer"
+        android:padding="12dp"
+        android:background="?attr/colorSecondaryContainer"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnStartSender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Broadcasting"
+        android:layout_marginBottom="32dp" />
+
+    <!-- ===== RECEIVER ===== -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Connect to a friend (Receiver)"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="?attr/colorOnSurface" />
+
+    <EditText
+        android:id="@+id/etTargetIp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Friend's IP (e.g. 192.168.1.5)"
+        android:inputType="text"
+        android:textColor="?attr/colorOnSurface"
+        android:textColorHint="?attr/colorOnSurfaceVariant"
+        android:padding="12dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnConnectReceiver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Connect &amp; Listen"
+        android:layout_marginBottom="32dp" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Status: Idle"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        android:textColor="?attr/colorOnSurface" />
+
+</LinearLayout>
