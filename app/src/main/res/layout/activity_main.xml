@@ -14,7 +14,15 @@
         android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="?attr/colorPrimary"
-        android:layout_marginBottom="32dp" />
+        android:layout_marginBottom="16dp" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/swHighFps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="120 FPS on high-end displays"
+        android:textColor="?attr/colorOnSurface"
+        android:layout_marginBottom="24dp" />
 
     <!-- ===== SENDER ===== -->
     <TextView
@@ -25,6 +33,37 @@
         android:textStyle="bold"
         android:textColor="?attr/colorOnSurface" />
 
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/swMediaSource"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stream media playing on this phone (not mic)"
+        android:textColor="?attr/colorOnSurface"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp" />
+
+    <Spinner
+        android:id="@+id/spnQuality"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvBufferLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buffer: 300 ms (more = smoother, extra delay)"
+        android:textSize="14sp"
+        android:textColor="?attr/colorOnSurface" />
+
+    <SeekBar
+        android:id="@+id/seekBuffer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="20"
+        android:progress="6"
+        android:layout_marginBottom="8dp" />
+
     <TextView
         android:id="@+id/tvLocalIp"
         android:layout_width="match_parent"
@@ -34,7 +73,6 @@
         android:textColor="?attr/colorOnSecondaryContainer"
         android:padding="12dp"
         android:background="?attr/colorSecondaryContainer"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp" />
 
     <TextView
@@ -63,16 +101,29 @@
         android:textStyle="bold"
         android:textColor="?attr/colorOnSurface" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Friends on this Wi-Fi (tap to connect):"
+        android:textSize="14sp"
+        android:textColor="?attr/colorOnSurface"
+        android:layout_marginTop="8dp" />
+
+    <ListView
+        android:id="@+id/lvFriends"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp" />
+
     <EditText
         android:id="@+id/etTargetIp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Friend's IP (e.g. 192.168.1.5)"
+        android:hint="…or enter IP manually (e.g. 192.168.1.5)"
         android:inputType="text"
         android:textColor="?attr/colorOnSurface"
         android:textColorHint="?attr/colorOnSurfaceVariant"
         android:padding="12dp"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp" />
 
     <Button

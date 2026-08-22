@@ -1,11 +1,13 @@
 package com.localaux.soundshare.net
 
+import android.util.Log
 import org.json.JSONObject
+import java.net.InetSocketAddress
 import java.net.Socket
 
 /** Receiver side: connects to sender TCP :50000. */
 class ControlClient(
-    private val onStarted: () -> Unit,
+    private val onStarted: (bufferMs: Int) -> Unit,
     private val onStopped: () -> Unit
 ) {
     @Volatile private var running = false
@@ -16,8 +18,13 @@ class ControlClient(
         running = true
         Thread {
             try {
-                val s = Socket(ip, ControlServer.PORT)
+                Log.d("ControlClient", "Attempting TCP connection to $ip:50000...")
+                val s = Socket()
+                // FIX: Add a 5-second timeout so it doesn't hang forever
+                s.connect(InetSocketAddress(ip, ControlServer.PORT), 5000)
                 socket = s
+                Log.d("ControlClient", "TCP connected! Sending handshake...")
+
                 val writer = s.getOutputStream().bufferedWriter()
                 val reader = s.getInputStream().bufferedReader()
 
@@ -27,15 +34,17 @@ class ControlClient(
                 }.toString() + "\n"); writer.flush()
 
                 val line = reader.readLine() ?: return@Thread
+                Log.d("ControlClient", "Received handshake: $line")
                 val msg = JSONObject(line)
                 if (msg.optString("type") != "start_audio") return@Thread
 
-                onStarted()
-                while (running) {                // listen for control messages
+                onStarted(msg.optInt("buffer_ms", 100))
+                while (running) {
                     val l = reader.readLine() ?: break
                     if (JSONObject(l).optString("type") == "stop") break
                 }
-            } catch (_: Exception) {
+            } catch (e: Exception) {
+                Log.e("ControlClient", "Connection failed: ${e.javaClass.simpleName} - ${e.message}")
             } finally {
                 onStopped()
             }

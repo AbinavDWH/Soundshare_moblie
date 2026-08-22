@@ -1,11 +1,14 @@
 package com.localaux.soundshare.net
 
+import com.localaux.soundshare.audio.QualityMode
 import org.json.JSONObject
 import java.net.ServerSocket
 import java.net.Socket
 
-/** Sender side: TCP :50000, JSON handshake (design doc §7/§8). */
+/** Sender side: TCP :50000, JSON handshake (§7/§8). */
 class ControlServer(
+    private val mode: QualityMode,
+    private val bufferMs: Int,
     private val onReceiverConnected: (receiverIp: String, udpPort: Int) -> Unit,
     private val onReceiverDisconnected: () -> Unit
 ) {
@@ -40,18 +43,19 @@ class ControlServer(
             val startMsg = JSONObject().apply {
                 put("type", "start_audio")
                 put("version", 1)
-                put("codec", "opus")
+                put("codec", if (mode.codec == 0) "opus" else "pcm")
                 put("sample_rate", 48000)
                 put("channels", 1)
                 put("bit_depth", 16)
+                put("bitrate_kbps", mode.bitrateKbps)
                 put("udp_port", udpPort)
-                put("buffer_ms", 100)
+                put("buffer_ms", bufferMs)   // 👈 user-chosen buffer
             }
             writer.write(startMsg.toString() + "\n"); writer.flush()
 
             onReceiverConnected(socket.inetAddress.hostAddress ?: "", udpPort)
 
-            while (running) {                    // keep TCP open for control
+            while (running) {
                 val line = reader.readLine() ?: break
                 if (JSONObject(line).optString("type") == "stop") break
             }

@@ -11,10 +11,12 @@
     <!-- ===== Audio capture (sender) ===== -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
-    <!-- ===== Keep streaming alive (design doc §10) ===== -->
+    <!-- ===== Keep streaming alive (design doc §10 + M6 Service) ===== -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" /> <!-- NEW -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application
@@ -33,6 +35,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".service.AudioStreamService"
+            android:exported="false"
+            android:foregroundServiceType="microphone|mediaPlayback|mediaProjection" /> <!-- UPDATED -->
 
     </application>
 
